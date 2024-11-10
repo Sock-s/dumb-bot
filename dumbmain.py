@@ -143,7 +143,7 @@ async def setup_channel(interaction: discord.Interaction, channel: discord.TextC
 # /setup reaction count command
 @bot.tree.command(name="setup-reaction-count", description="set threshold of reactions for dumbboard")
 @discord.app_commands.checks.has_permissions(manage_guild=True)
-async def setup_stars(interaction: discord.Interaction, star: int):
+async def setup_stars(interaction: discord.Interaction, reactions: int):
     try:
         async with bot.db.cursor() as cursor:
             await cursor.execute("SELECT channel FROM starSetup WHERE guild = ?", (interaction.guild.id,))
