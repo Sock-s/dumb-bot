@@ -17,7 +17,7 @@ bot = MyBot(command_prefix='!', intents=discord.Intents.all())
 @bot.event
 async def on_ready():
     print("Bot is online.")
-    setattr(bot, "db", await aiosqlite.connect('starboard.db'))
+    setattr(bot, "db", await aiosqlite.connect('dumbboard.db'))
     await asyncio.sleep(2)
     async with bot.db.cursor() as cursor:
         await cursor.execute("""
