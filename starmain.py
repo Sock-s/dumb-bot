@@ -4,6 +4,9 @@ from discord.ext import commands
 from discord.utils import format_dt
 import aiosqlite
 import asyncio
+import os
+from dotenv import load_dotenv, dotenv_values
+load_dotenv()
 
 class MyBot(commands.Bot):
     async def setup_hook(self):
@@ -230,4 +233,6 @@ async def on_command_error(ctx, error):
     return
 
 # bot token
-bot.run("MTMwNDcxNjY0Mjg1MjQwOTM1NA.GEUtj8.UdRRpApSJ9-GLJWA3tEGiTVTzrjtMNmyfn5TSU")
+TOKEN = os.getenv("BOT_TOKEN")
+
+bot.run(TOKEN)
