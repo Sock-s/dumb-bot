@@ -36,7 +36,7 @@ async def on_ready():
         """)
     await bot.db.commit()
 # id of emoji (change for the real dumb emoji when bot gets in server)
-custom_emoji = "<:dumb:1304750621135474708>"
+custom_emoji = "<:dumb:1147941351472762880>"
 # if reaction added then bot adds it
 @bot.event
 async def on_raw_reaction_add(payload):
@@ -152,13 +152,13 @@ async def setup_stars(interaction: discord.Interaction, reactions: int):
             if data is None:
                 default_channel_id = 0
                 await cursor.execute("INSERT INTO starSetup (starLimit, channel, guild) VALUES (?, ?, ?)", 
-                                     (star, default_channel_id, interaction.guild.id))
+                                     (reactions, default_channel_id, interaction.guild.id))
             else:
                 await cursor.execute("UPDATE starSetup SET starLimit = ? WHERE guild = ?", 
-                                     (star, interaction.guild.id))
+                                     (reactions, interaction.guild.id))
 
             await bot.db.commit()
-            await interaction.response.send_message(f"{star} is now the reaction limit!")
+            await interaction.response.send_message(f"{reactions} is now the reaction limit!")
     except discord.errors.Forbidden:
         await interaction.response.send_message(
             "I have missing permissions. please check my permissions.",
